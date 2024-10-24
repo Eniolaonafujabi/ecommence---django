@@ -11,3 +11,9 @@ class Product(models.Model):
 
 class Collection(models.Model):
     title = models.CharField(max_length=100,null=False, blank=False)
+
+class Cart(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+
+class CartItem(models.Model):
+    quantity = models.PositiveSmallIntegerField()
