@@ -16,10 +16,10 @@ class Product(models.Model):
     inventory = models.PositiveSmallIntegerField()
     last_updated = models.DateTimeField(auto_now=True)
     collection=models.ForeignKey(Collection, on_delete=models.PROTECT)
-    promotion =models.ManyToManyField('Promotion')
+    promotion =models.ManyToManyField('Promotion', related_name='+')
 
 class Promotion(models.Model):
-    product = models.ManyToManyField(Product)
+    product = models.ManyToManyField(Product, related_name='+')
     discount = models.DecimalField(max_digits=6,decimal_places=2)
 
 class Cart(models.Model):
