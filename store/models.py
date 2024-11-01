@@ -9,6 +9,9 @@ from django.conf import settings
 class Collection(models.Model):
     title = models.CharField(max_length=100,null=False, blank=False)
 
+    class Meta:
+        ordering = ['title']
+
     def __str__(self):
         return self.title
 
