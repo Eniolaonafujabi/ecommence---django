@@ -14,7 +14,7 @@ route = DefaultRouter()
 
 route.register("collections", views.CollectionViewSet, basename="collections")
 route.register("products", views.ProductViewSet, basename="products")
-route.register("users", views.ShoppingCartViewSet, basename="shoppingcart")
+route.register("shoppingcart", views.ShoppingCartViewSet, basename="shoppingcart")
 
 product_route = NestedDefaultRouter(route, "products", lookup="product")
 product_route.register("reviews", views.ReviewViewSet, basename="reviews")
