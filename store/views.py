@@ -58,7 +58,7 @@ class ReviewViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         product_pk = self.request.query_params.get('product_pk')
-        return Review.objects.filter(product_id = product_pk)
+        return Review.objects.filter(product_id = self.kwargs['product_pk'])
 
 class ShoppingCartViewSet(viewsets.ViewSet):
     queryset = ShoppingCart.objects.all()
