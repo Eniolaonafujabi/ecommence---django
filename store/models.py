@@ -65,3 +65,15 @@ class Address(models.Model):
     customer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
 
 
+class Review(models.Model):
+    customer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
+    product = models.ForeignKey(Product, on_delete=models.PROTECT)
+    title = models.CharField(max_length=255)
+    content = models.TextField()
+
+
+class ShoppingCart(models.Model):
+    customer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
+    product = models.ForeignKey(Product, on_delete=models.PROTECT)
+    cartItem = models.ForeignKey(Cart, on_delete=models.PROTECT)
+    quantity = models.PositiveIntegerField()

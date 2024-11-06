@@ -3,7 +3,7 @@ from decimal import Decimal
 
 from rest_framework import serializers
 
-from store.models import Product, Collection
+from store.models import Product, Collection, Review, ShoppingCart
 
 
 # declaring fields by my self
@@ -41,3 +41,20 @@ class CreateProductSerializer(serializers.ModelSerializer):
         model = Product
         fields = [ 'title', 'price', 'description', 'inventory','collection']
 
+class CreateCollectionSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Collection
+        fields = ['title']
+
+class ReviewSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Review
+        fields = ['id', 'customer','product', 'title','content']
+
+class CreateShoppingCartSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = ShoppingCart
+        fields = ['customer', 'product', 'quantity']
