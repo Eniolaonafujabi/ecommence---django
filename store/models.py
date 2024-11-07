@@ -32,12 +32,15 @@ class Promotion(models.Model):
     product = models.ManyToManyField(Product, related_name='+')
     discount = models.DecimalField(max_digits=6,decimal_places=2)
 
-class Cart(models.Model):
+class ShoppingCart(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
+    customer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
+    product = models.ForeignKey(Product, on_delete=models.PROTECT)
+    quantity = models.PositiveIntegerField()
 
 
 class CartItem(models.Model):
-    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
+    cart = models.ForeignKey(ShoppingCart, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.IntegerField()
 
@@ -72,8 +75,8 @@ class Review(models.Model):
     content = models.TextField()
 
 
-class ShoppingCart(models.Model):
-    customer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
-    product = models.ForeignKey(Product, on_delete=models.PROTECT)
-    cartItem = models.ForeignKey(Cart, on_delete=models.PROTECT)
-    quantity = models.PositiveIntegerField()
+# class ShoppingCart(models.Model):
+#     customer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
+#     product = models.ForeignKey(Product, on_delete=models.PROTECT)
+#     cartItem = models.ForeignKey(ShoppingCart, on_delete=models.PROTECT)
+#     quantity = models.PositiveIntegerField()
